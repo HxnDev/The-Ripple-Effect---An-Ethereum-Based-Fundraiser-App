@@ -1,0 +1,571 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Secular+One#standard-styles");
+@import url("https://fonts.googleapis.com/css?family=Licorice");
+@import url("https://fonts.googleapis.com/css?family=Kalam");
+
+//--------------------------------------------- HOMEPAGE --------------------------------------//
+//---------------------------------------------------------------------------------------------//
+
+.App {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Licorice';
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 30s linear;
+  height: 30vmin;
+}
+
+.App-background {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3)),
+    url('./components/images/main_img.jpg');
+  height: 50vh;
+  background-position: center;
+  background-size:auto;
+}
+
+.App-header {
+  font-family: 'Licorice';
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3)),
+    url('./components/images/main_img.jpg');
+  background-position: center;
+  background-size:cover;
+  min-height: 100vh;
+  width: 500vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(100px + 2vmin);
+  color: white;
+}
+
+.App-p {
+  font-family: 'Quicksand';
+  align-items: center;
+  justify-content: center;
+  font-size: calc(15px + 2vmin);
+  color: white;
+}
+
+.App-btn {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 15px 30px;
+  border: 0;
+  background-color: #ffb06f;
+  color: rgb(255, 255, 255);
+  border-radius: 20px;
+  transition: all 250ms ease-in-out;
+  cursor: pointer;
+  &:hover {
+    background-color: #6ac1ff;
+    color: rgb(14, 0, 0);
+    transform: scale(1.1);
+    
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+//--------------------------------------------- CAUSES PAGE --------------------------------------//
+//------------------------------------------------------------------------------------------------//
+
+.Cause {
+  overflow: hidden;
+  box-shadow: 0, 2px 20px #8a8a8a ;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 200ms ease-in;
+
+  &:hover{
+    transform: scale(1.03);
+  }
+
+}
+
+.Cause-body {
+  font-family: 'Quicksand';
+  margin: 2rem;
+}
+
+.Causes-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+  gap:2rem;
+  justify-content: center;
+}
+
+.Cause-img {
+  height: 12rem;
+  width: 100%; 
+  object-fit: cover;
+  box-shadow: 8px 8px 6px #AB6B51;
+}
+
+.cause-title {
+  padding: 1rem;
+}
+
+.cause-des{
+  padding: 0 1rem;
+}
+
+.cause-btn {
+  font-size: 1rem;
+  font-family: 'Licorice';
+  font-weight: bold;
+  padding: 0.4rem;
+  position:relative;
+  left: 50px;
+
+  margin: 1rem;
+  width: 150px;
+  height: 50px;
+  border: 1px;
+  background-color: #00cff3;
+  color: rgb(0, 0, 0);
+  border-radius: 20px;
+  transition: all 250ms ease-in-out;
+  z-index: 1;
+  cursor: pointer;
+  &:hover {
+    background-color: #ffa962;
+    color: rgb(14, 0, 0);
+    transform: scale(1.1);
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.gen-donation-btn {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 15px 10px;
+  border: 0;
+  background-color: #ffb06f;
+  color: rgb(255, 255, 255);
+  border-radius: 30px;
+  transition: all 250ms ease-in-out;
+  cursor: pointer;
+  &:hover {
+    background-color: #6ac1ff;
+    color: rgb(14, 0, 0);
+    transform: scale(1.1);
+    
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.gen-img {
+    height: 40vmin;
+    width: 50vmin; 
+    position: relative;
+    box-shadow: 8px 8px 6px #AB6B51;
+}
+
+//--------------------------------------------- LOGIN PAGE --------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+
+.login {
+  width: 27em;
+  height: 40em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  position: relative;
+  z-index: 99;
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0px 0px 12px 2px rgba(15, 15, 15, 0.2);
+    border-radius: 4px;
+    position: relative;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    padding: 17px 10px;
+    //transition: transform 200ms ease-in-out;
+  }
+  
+    .text {
+      font-size: 21px;
+      font-weight: 500;
+      color: #fff;
+      align-items: right;
+      margin-right: 3em;
+      margin-left: 3em;
+    }
+}
+
+.login-header {
+  font-family: 'Licorice';
+  height: 10vh;
+  width: 10vh;
+  background-position: center;
+  background-size:cover;
+  min-height: 1vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(100px + 2vmin);
+  color: rgb(0, 0, 0);
+}
+
+.login-btn {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 40px;
+  border: 0;
+  background-color: #87abee;
+  color: rgb(233, 221, 221);
+  border-radius: 15px;
+  transition: all 250ms ease-in-out;
+  cursor: pointer;
+  &:hover {
+    background-color: #0bbb89;
+    color: rgb(14, 0, 0);
+    transform: scale(1.1);
+  }
+  &:focus {
+    outline: none;
+
+  }
+}
+
+.admin-btn {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 40px;
+  border: 0;
+  background-color: #ffa733;
+  color: rgb(89, 0, 255);
+  border-radius: 15px;
+  transition: all 250ms ease-in-out;
+  z-index: 1;
+  cursor: pointer;
+  &:hover {
+    background-color: #0bbb89;
+    color: rgb(14, 0, 0);
+    
+    transform: scale(1.1);
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+//--------------------------------------------- EACH CAUSE PAGE --------------------------------------//
+//----------------------------------------------------------------------------------------------------//
+
+.img-cause {
+  height: 30vmin;
+  width: 40vmin; 
+  position: relative;
+  box-shadow: 8px 8px 6px #AB6B51;
+}
+
+.header-cause {
+  font-family: 'Licorice';
+  height: 100vh;
+  width: 1000vh;
+  background-position: center;
+  background-size:cover;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(100px + 2vmin);
+  color: rgb(0, 0, 0);
+}
+
+.p-cause {
+  font-family: 'Quicksand';
+  align-items: center;
+  justify-content: center;
+  font-size: calc(5px + 2vmin);
+  color: rgb(0, 0, 0);
+}
+
+.donate {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    .header {
+      font-size: 40px;
+      font-family: Quicksand;
+      align-items: center;
+      justify-content: center;
+    }
+
+      .form {
+        margin-top: 0.5%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .form-group {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          width: fit-content;
+          label {
+            font-size: 15px;
+          }
+          input {
+            margin-top: 2px;
+            min-width: 18em;
+            height: 37px;
+            padding: 0px 10px;
+            font-size: 12px;
+            font-family: Quicksand;
+            background-color: #f3f3f3;
+            border: 0;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            transition: all 250ms ease-in-out;
+
+            &:focus {
+              outline: none;
+              box-shadow: 0px 0px 12px 1px #3474dbb2;
+            }
+          }
+        }
+      }
+
+    .footer {
+      margin-top: 0.1px;
+    }
+}
+
+.donate-btn {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 40px;
+  border: 0;
+  background-color: #87abee;
+  color: rgb(233, 221, 221);
+  border-radius: 20px;
+  transition: all 250ms ease-in-out;
+  cursor: pointer;
+  &:hover {
+    background-color: #f3a948;
+    color: rgb(14, 0, 0);
+    transform: scale(1.1);
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.space {
+  font-family: 'Quicksand';
+  font-weight: bold;
+  font-size: calc(15px + 2vmin);
+  color: rgb(255, 255, 255);
+}
+
+.target-amount {
+  font-family: 'Quicksand';
+  font-weight: bold;
+  font-size: calc(15px + 2vmin);
+  color: rgb(153, 0, 0);
+}
+
+.current-amount {
+  font-family: 'Quicksand';
+  font-weight: bold;
+  font-size: calc(15px + 2vmin);
+  color: rgb(155, 0, 0);
+}
+
+
+//--------------------------------------------- POPUP PAGE --------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+
+.popup {
+  width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    .header {
+      font-size: 40px;
+      font-family: Quicksand;
+      align-items: center;
+      justify-content: center;
+    }
+
+      .form {
+        margin-top: 0.5%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .form-group {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          width: fit-content;
+          label {
+            font-size: 15px;
+          }
+          input {
+            margin-top: 2px;
+            min-width: 18em;
+            height: 37px;
+            padding: 0px 10px;
+            font-size: 12px;
+            font-family: Quicksand;
+            background-color: #f3f3f3;
+            border: 0;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            transition: all 250ms ease-in-out;
+
+            &:focus {
+              outline: none;
+              box-shadow: 0px 0px 12px 1px #3474dbb2;
+            }
+          }
+        }
+      }
+
+    .footer {
+      margin-top: 0.1px;
+    }
+}
+
+.popup-image {
+  height: 50vmin;
+  width: 60vmin; 
+  position: relative;
+  box-shadow: 8px 8px 6px #AB6B51;
+}
+
+.popup-header {
+  font-family: 'Licorice';
+  height: 100vh;
+  width: 1000vh;
+  background-position: center;
+  background-size:cover;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(100px + 2vmin);
+  color: rgb(0, 0, 0);
+}
+
+.popup-p {
+  font-family: 'Quicksand';
+  align-items: center;
+  justify-content: center;
+  font-size: calc(5px + 2vmin);
+  color: rgb(0, 0, 0);
+}
+
+.popup-btn {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 40px;
+  border: 0;
+  background-color: #87abee;
+  color: rgb(233, 221, 221);
+  border-radius: 20px;
+  transition: all 250ms ease-in-out;
+  cursor: pointer;
+  &:hover {
+    background-color: #f3a948;
+    color: rgb(14, 0, 0);
+    transform: scale(1.1);
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+//-------------------------------------- ADMIN PORTAL PAGE --------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+
+.dashboard {
+    box-shadow: 0, 2px 20px #8a8a8a ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 200ms ease-in;
+}
+
+.portal {
+  
+  font-family: 'Licorice';
+  font-size: calc(40px + 2vmin);
+  font-weight: bold;
+  display: flex;
+  flex-direction:column ;
+  justify-content:center ;
+  cursor: pointer;
+  transition: transform 200ms ease-in;
+  text-align: center;
+
+  &:hover{
+    color: rgb(255, 0, 0);
+  }
+  
+}
+
+.portal-balance {
+  font-family: 'Quicksand';
+  font-size: calc(5px + 2vmin);
+  color: rgb(255, 0, 0);
+  flex:1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.admin-logo {
+  animation: App-logo-spin infinite 30s linear;
+  height: 20vmin;
+}
