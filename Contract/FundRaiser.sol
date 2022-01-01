@@ -1,4 +1,4 @@
-/ SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: UNLICENSED
 
 pragma solidity >=0.4.1;
 pragma experimental ABIEncoderV2; // allows returning array
