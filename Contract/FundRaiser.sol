@@ -41,6 +41,7 @@ contract FundRaiser {
 	constructor() {
 		admin = payable(msg.sender); 																									// admin deploys the contract
 	}
+
 	// admin can add a cause
 	function addCause(address _caddr, string memory _title, string memory _desc, uint _target, uint _timeThresh) external onlyAdmin {
 		uint endTime = 0;
@@ -106,3 +107,97 @@ contract FundRaiser {
 		generalAllocations[_title] += _amount;																				// update the general fund records
 		generalFundAmount -= _amount;																									// update the fund to reflect the allocation removal
 	}
+
+	// donated amounts are sent to cause address
+	function confirmDonationsForCause(string memory _title) external onlyAdmin {
+		cause memory Cause = causeMap[_title];
+
+		uint totalDonated = 0;
+		totalDonated += causeMap[_title].donatedAmount;																// get the donated amount
+		totalDonated += generalAllocations[_title];																		// add the funds allocated
+
+		if (totalDonated >= Cause.targetAmount || Cause.deadline <= block.number) {
+			Cause.causeAddr.transfer(totalDonated);																			// transfer the total donated amount to the address in ether
+			Cause.acceptingDonations = false;																						// no longer accepting donations
+		}
+	}
+
+	// get list of causes
+	function causeList() public view returns (cause[] memory){											// return list of causes and their attributes
+		cause[] memory ret = new cause[](causeTitles.length);													// we can't return mapping directly
+    for (uint i = 0; i < causeTitles.length; i++) {																// so we return an array of cause objects
+        ret[i] = causeMap[causeTitles[i]];
+    }
+    return ret;
+	}
+
+	// get list of cause names
+	function getCauseNames() public view returns (string[] memory) {
+		return causeTitles;
+	}
+
+	// get desc of cause
+	function getCauseDesc(string memory _title) public view returns (string memory) {
+		return causeMap[_title].desc;
+	}
+
+	// get donated amount (so far) of a cause
+	function getCauseDonatedAmount(string memory _title) public view returns (uint) {
+		return weiToEther(causeMap[_title].donatedAmount) + getGeneralFundAllocationForCause(_title);
+	}
+
+	// get target amount of a cause
+	function getCauseTargetAmount(string memory _title) public view returns (uint) {
+		return weiToEther(causeMap[_title].targetAmount);
+	}
+
+	// get general funds donated (and not allocated yet)
+	function getGeneralFundsAvailable() public view returns (uint) {
+		return weiToEther(generalFundAmount);
+	}
+
+	// get general funds allocated for a cause
+	function getGeneralFundAllocationForCause(string memory _title) public view returns (uint) {
+		return weiToEther(generalAllocations[_title]);
+	}
+
+	// get general funds allocated
+	function getOverallGeneralFundAllocatedAmount() public view returns (uint) {
+		uint totalDonated;
+		for (uint i = 0; i < causeTitles.length; i++) {																// iterate through all the causes
+        totalDonated += generalAllocations[causeTitles[i]];												//	add the allocated amount
+    }
+    return weiToEther(totalDonated);
+	}
+
+	// admin can mark a cause as currently accepting donations or not (DEV PURPOSES ONLY)
+	function setCauseDonationAcceptance(string memory _title, bool _status) public onlyAdmin {
+		causeMap[_title].acceptingDonations = _status;
+	}
+
+	// view if a cause is currently accepting donations or not
+	function getCauseDonationAcceptance(string memory _title) public view returns (bool) {
+		return causeMap[_title].acceptingDonations;
+	}
+
+	// user can get their total donation amount
+	function getOverallUserDonationAmount() public view returns (uint) {
+		uint totalDonated;
+
+    for (uint i = 0; i < causeTitles.length; i++) {																// iterate through all the causes
+        totalDonated += userDonations[causeTitles[i]][msg.sender];								//	add how much user has donated to that cause
+    }
+    return weiToEther(totalDonated);
+	}
+
+	// user requests refund of a donation for some cause
+	function requestRefund(string memory _title) external {
+		// transfer the donated amount back
+		uint donatedAmt = userDonations[_title][msg.sender];													// get the user donation for that cause
+		payable(msg.sender).transfer(donatedAmt);																			// send that amount to user
+
+		// update our donation records
+		userDonations[_title][msg.sender] = 0;																				// update our user donation records
+		causeMap[_title].donatedAmount -= donatedAmt;																	// update the cause records
+	}
+}
