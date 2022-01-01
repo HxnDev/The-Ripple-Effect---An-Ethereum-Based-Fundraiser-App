@@ -7,7 +7,9 @@
 
 ## Description:
 
-The Ripple Effect is a blockchain based de-centralized application that aims to bring transparency to the process of fundraising and managing donations for various types of charities. Our blockchain is built with Ethereum, using Ganache and Truffle to manage it. For the frontend (interface), we are using ReactJS. Fundraising and donations is a process that is typically not transparent or easily accountable. By introducing our blockchain into the process, we are making sure that anyone can view the donation and allocation transactions and track where money comes from and where it goes too. This makes the whole process transparent.
+The Ripple Effect is a blockchain based de-centralized application that aims to bring transparency to the process of fundraising and managing donations for various types of charities. Our blockchain is built with Ethereum, using Ganache and Truffle to manage it. For the frontend (interface), we are using ReactJS. 
+
+Fundraising and donations is a process that is typically not transparent or easily accountable. By introducing our blockchain into the process, we are making sure that anyone can view the donation and allocation transactions and track where money comes from and where it goes to. This makes the whole process transparent.
 
 ## Requirements:
 
@@ -53,13 +55,13 @@ The Ripple Effect offers the following functionalities:
 
 ### 1: Frontend:
 
-First step is to know the flow of our program. The flow can be shown by the following flowchart:
+Our program flow can be seen in the following flowchart:
 
 <p align="center">
   <img src="https://github.com/HxnDev/The-Ripple-Effect---An-Ethereum-Based-Fundraiser-App/blob/main/extras/flow.png">
 </p>
 
-We created 12 different pages for the frontend and then connected them using switches from **react-router-dom**. We furthermore created a customized styling class named **Style.scss** that has different styles for different classes/containers. 
+We created 12 different pages for the frontend and then connected them using switches from **react-router-dom**. A customized styling class named **Style.scss** was used to adopt different styles for different classes/containers. 
 
 Some screenshots of our interfaces can be seen as follows:
 
@@ -96,7 +98,10 @@ Some screenshots of our interfaces can be seen as follows:
 
 ### 2: Backend:
 For this project, we created one smart contract that was responsible for managing all the donations and funds raised and allocated. We had a custom structure for representing a cause, and some state variables to keep track of causes, donations and funds. The appropriate methods needed for the desired functionalities were also added in. We used the package ethers.js in React to react with our local ethereum node in Ganache. The provider is used to connect to the Ganache blockchain at port 7545 – creating an ethers.Contract with this is enough for accessing any of the FundRaiser contract methods that do not perform state-changing transactions. If we want to do that, then we will use provider.getSigner with the current logged in user’s address and create an ethers.Contract object based off of that signer.
+
 The address and abi of the FundRaiser smart contract are created when the contract is successfully compiled and migrated, and they are stored in ***truffle-project-directory/build/contracts/FundRaiser.json***. We simply copy them to a file config.js and store this file in our React project folder, and import it anytime we need it to connect to the smart contract. We will use the ensuing ethers.Contract object to call upon any of the smart contract methods.
+
+Note that whenever the contract is deployed again e.g. if some new functionality is added and it is recompiled, the config.js file has to be updated.
 
 The list of implemented methods and their descriptions is as follows:
 
@@ -107,7 +112,7 @@ The list of implemented methods and their descriptions is as follows:
 ## Contributors:
 In the end, I'd like to mention my group members who helped me alot in this project. You can find them at:
 
-[Sana Ali](https://github.com/sanaa-khan)
+[Sana Khan](https://github.com/sanaa-khan)
 
 [Aysha Noor](https://github.com/ayshanoorcode)
 
