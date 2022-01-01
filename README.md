@@ -94,4 +94,29 @@ Some screenshots of our interfaces can be seen as follows:
   <img src="https://github.com/HxnDev/The-Ripple-Effect---An-Ethereum-Based-Fundraiser-App/blob/main/Frontend%20Screenshots/11%20admin_allocate_funds.png">
 </p>
 
+### 2: Backend:
+For this project, we created one smart contract that was responsible for managing all the donations and funds raised and allocated. We had a custom structure for representing a cause, and some state variables to keep track of causes, donations and funds. The appropriate methods needed for the desired functionalities were also added in. We used the package ethers.js in React to react with our local ethereum node in Ganache. The provider is used to connect to the Ganache blockchain at port 7545 – creating an ethers.Contract with this is enough for accessing any of the FundRaiser contract methods that do not perform state-changing transactions. If we want to do that, then we will use provider.getSigner with the current logged in user’s address and create an ethers.Contract object based off of that signer.
+The address and abi of the FundRaiser smart contract are created when the contract is successfully compiled and migrated, and they are stored in ***truffle-project-directory/build/contracts/FundRaiser.json***. We simply copy them to a file config.js and store this file in our React project folder, and import it anytime we need it to connect to the smart contract. We will use the ensuing ethers.Contract object to call upon any of the smart contract methods.
 
+The list of implemented methods and their descriptions is as follows:
+
+<p align="center">
+  <img src="https://github.com/HxnDev/The-Ripple-Effect---An-Ethereum-Based-Fundraiser-App/blob/main/extras/implemented_methods.png">
+</p>
+
+## Contributors:
+In the end, I'd like to mention my group members who helped me alot in this project. You can find them at:
+
+[Sana Ali](https://github.com/sanaa-khan)
+
+[Aysha Noor](https://github.com/ayshanoorcode)
+
+## 📫 Contact Me: 
+<p align="center">
+  <a href="http://www.hxndev.com/"><img src="https://img.icons8.com/bubbles/50/000000/web.png" alt="Website"/></a>
+	<a href="mailto:chhxnshah@gmail.com"><img src="https://img.icons8.com/bubbles/50/000000/gmail.png" alt="Gmail"/></a>
+	<a href="https://github.com/HxnDev"><img src="https://img.icons8.com/bubbles/50/000000/github.png" alt="GitHub"/></a>
+	<a href="https://www.linkedin.com/in/hassan-shahzad-2a6617212/"><img src="https://img.icons8.com/bubbles/50/000000/linkedin.png" alt="LinkedIn"/></a>
+	<a href="https://www.instagram.com/hxn_photography/?hl=en"><img src="https://img.icons8.com/bubbles/50/000000/instagram.png" alt="Instagram"/></a>
+	
+</p>
