@@ -1,1 +1,7 @@
+let instance = await FundRaiser.deployed()
 
+instance.addCause(accounts[1], 'Aid to Afghanistan', 'With the freezing cold winter and collapsing economy, the people of Afghanistan have hardly anything to eat. Let us all come together to help them.', 10, 50)
+
+instance.addCause(accounts[2], 'Help Palestine', 'Due to the ongoing war, people have lost their homes, jobs, and their loved ones. Lets join hands and build Palestine back together.', 20, 50)
+
+instance.addCause(accounts[3], 'Save Hassan', 'He might seem a nice guy but in reality he is a mental patient. As he is just a student and thinks he is not mentally ill, he does not get treatment. Contribute to his urgently needed treatment today.', 100, 100)
