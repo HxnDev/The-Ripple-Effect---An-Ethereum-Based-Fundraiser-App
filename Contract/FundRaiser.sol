@@ -41,4 +41,68 @@ contract FundRaiser {
 	constructor() {
 		admin = payable(msg.sender); 																									// admin deploys the contract
 	}
+	// admin can add a cause
+	function addCause(address _caddr, string memory _title, string memory _desc, uint _target, uint _timeThresh) external onlyAdmin {
+		uint endTime = 0;
 
+		// If there is a time limit
+		if (_timeThresh != 0) {
+			endTime = block.number + _timeThresh;																				// fix the deadline as current block number + the specified thresh
+		}
+
+		cause memory Cause = cause(payable(_caddr), _title, _desc, etherToWei(_target), 0, endTime, true);	// create the cause
+		causeMap[_title] = Cause;																											// add cause to map
+		causeTitles.push(_title);																											// add its title to the title array
+	}
+
+	// user can donate to a cause
+	function donateToCause(string memory _title) payable public {
+		bool causeExists = false;
+		for (uint i = 0; i < causeTitles.length; i++) {																// iterate through causes
+	    if (keccak256(bytes(causeTitles[i])) == keccak256(bytes(_title))) {					// compare titles
+				causeExists = true;
+				break;
+			}
+    }
+
+		require(causeExists == true);																									// check that cause existed before (don't let user just add anything)
+		require(causeMap[_title].acceptingDonations == true);													// cause should be flagged as accepting donations
+
+		userDonations[_title][msg.sender] += msg.value;																// update the user donation records
+		causeMap[_title].donatedAmount += msg.value;																	//  update the cause donation records
+
+		bool addressAdded = false;																										// check that user address was not stored before
+		for (uint i = 0; i < userAddresses.length; i++) {															// iterate through address
+	    if (userAddresses[i] == msg.sender) {																				// compare addresses
+				addressAdded = true;
+				break;
+			}
+    }
+
+		if (addressAdded == false) {
+			userAddresses.push(msg.sender);																								// add user address
+		}
+	}
+
+	// user can donate in general - refund not possible in this case
+	// no need to keep track of who donated how much
+	function donateGeneral() payable public {
+		generalFundAmount += msg.value;																								// add paid amount to general fund
+	}
+
+	// admin allocates the general-donated-funds
+	function allocateGeneralFunds(string memory _title, uint _amount) external onlyAdmin {
+		bool causeExists = false;
+		for (uint i = 0; i < causeTitles.length; i++) {
+	    if (keccak256(bytes(causeTitles[i])) == keccak256(bytes(_title))) {
+				causeExists = true;
+				break;
+			}
+    }
+
+		require(causeExists == true);																									// check that cause existed before (don't let user just add anything)
+		require(_amount <= generalFundAmount);																				// only use the funds allocated for general purpose
+
+		generalAllocations[_title] += _amount;																				// update the general fund records
+		generalFundAmount -= _amount;																									// update the fund to reflect the allocation removal
+	}
